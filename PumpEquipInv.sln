@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpEquipInv.Api", "PumpEquipInv.Api\PumpEquipInv.Api.csproj", "{EA7C556B-4264-410D-AA5A-20C71D99CDA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpEquipInv.DataAccess", "PumpEquipInv.DataAccess\PumpEquipInv.DataAccess.csproj", "{BABBB0D9-654B-4A56-BCBA-A35CD8E71861}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpEquipInv.Core", "PumpEquipInv.Core\PumpEquipInv.Core.csproj", "{601C216C-C917-4E64-B42A-DEAC6D2B5EC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA7C556B-4264-410D-AA5A-20C71D99CDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7C556B-4264-410D-AA5A-20C71D99CDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7C556B-4264-410D-AA5A-20C71D99CDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7C556B-4264-410D-AA5A-20C71D99CDA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABBB0D9-654B-4A56-BCBA-A35CD8E71861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABBB0D9-654B-4A56-BCBA-A35CD8E71861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABBB0D9-654B-4A56-BCBA-A35CD8E71861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABBB0D9-654B-4A56-BCBA-A35CD8E71861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601C216C-C917-4E64-B42A-DEAC6D2B5EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601C216C-C917-4E64-B42A-DEAC6D2B5EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601C216C-C917-4E64-B42A-DEAC6D2B5EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601C216C-C917-4E64-B42A-DEAC6D2B5EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
