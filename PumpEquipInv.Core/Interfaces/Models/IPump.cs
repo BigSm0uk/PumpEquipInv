@@ -11,7 +11,7 @@ public interface IPump
     public decimal weight { get; set; }
     
     public string imagename { get; set; } 
-
+    
     public byte[]? image { get; set; }
     
     public decimal price { get; set; }

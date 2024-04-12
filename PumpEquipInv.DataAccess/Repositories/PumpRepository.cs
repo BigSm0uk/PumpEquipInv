@@ -39,7 +39,7 @@ public class PumpRepository(PumpDbContext dbContext) : IPumpRepository
     public async Task<Guid> CreateAsync(PumpDto item)
     {
         var id = Guid.NewGuid();
-        var pump = item.ConvertToPump(id);
+        var pump = await item.ConvertToPump(id);
         await dbContext.Pumps.AddAsync(pump);
         await dbContext.SaveChangesAsync();
         return id;
@@ -53,7 +53,7 @@ public class PumpRepository(PumpDbContext dbContext) : IPumpRepository
             return OperationResult.FailureResult($"Нет насоса с id {id}");
         }
 
-        var newPump = item.ConvertToPump(id);
+        var newPump = await item.ConvertToPump(id);
         dbContext.Pumps.Entry(pump).CurrentValues.SetValues(newPump);
         await dbContext.SaveChangesAsync();
 

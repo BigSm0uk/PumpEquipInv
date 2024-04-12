@@ -1,3 +1,4 @@
+using System.Drawing;
 using Microsoft.AspNetCore.Mvc;
 using PumpEquipInv.Core;
 using PumpEquipInv.Core.Domain;
@@ -26,14 +27,22 @@ namespace PumpEquipInv.Api.Controllers
 
         // POST api/<PumpController>
         [HttpPost]
-        public async Task<Guid> Post([FromBody] PumpDto item )
+        public async Task<Guid> Post([FromForm] PumpDto item)
         {
             return await repository.CreateAsync(item);
+        }
+        [HttpPost("test")]
+        public async Task<IActionResult> PostTest(IFormFile item)
+        {
+            using var memoryStream = new MemoryStream();
+            await item.CopyToAsync(memoryStream);
+            var res =  memoryStream.ToArray();
+            return File(res, "image/png");
         }
 
         // PUT api/<PumpController>/6ecd8c99-4036-403d-bf84-cf8400f67837
         [HttpPut("{id:guid}")]
-        public async Task<OperationResult> Put(Guid id, [FromBody] PumpDto item )
+        public async Task<OperationResult> Put(Guid id, [FromForm] PumpDto item )
         {
             return await repository.UpdateByIdAsync(id, item);
         }

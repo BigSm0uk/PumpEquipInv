@@ -1,11 +1,13 @@
-﻿using PumpEquipInv.Core.Domain.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+using PumpEquipInv.Core.Domain.DTOs;
 
 namespace PumpEquipInv.Core.Domain.Extensions;
 
 public static class PumpExtensions
 {
-    public static Pump ConvertToPump(this PumpDto dto, Guid id)
+    public static async Task<Pump> ConvertToPump(this PumpDto dto, Guid id)
     {
+        var imageData = await ConvertIFormFileToByteArray(dto.file);
         return new Pump
         {
             id = id,
@@ -13,13 +15,20 @@ public static class PumpExtensions
             name = dto.name,
             framematerialid = dto.framematerialid,
             wheelmaterialid = dto.framematerialid,
-            image = dto.image,
+            image = imageData,
             price = dto.price,
             motorid = dto.motorid,
-            imagename = dto.imagename,
+            imagename = dto.file.FileName,
             liquidtemperature = dto.liquidtemperature,
             weight = dto.weight,
             maxpressure = dto.maxpressure,
         };
+    }
+
+    private static async Task<byte[]> ConvertIFormFileToByteArray(IFormFile formFile)
+    {
+        using var memoryStream = new MemoryStream();
+        await formFile.CopyToAsync(memoryStream);
+        return memoryStream.ToArray();
     }
 }
