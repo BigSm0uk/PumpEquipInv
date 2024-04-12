@@ -1,11 +1,13 @@
-﻿namespace PumpEquipInv.Core.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using PumpEquipInv.Core.Abstractions;
 
-public class Material
+namespace PumpEquipInv.Core.Domain;
+
+public class Material : BaseEntity
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    [MaxLength(255)] public required string Name { get; init; }
 
-    public ICollection<Pump> FramePumps { get; set; }
-    public ICollection<Pump> WheelPumps { get; set; }
+    public required string Description { get; init; }
+    
+    public IEnumerable<Pump>? Pumps { get; init; }
 }

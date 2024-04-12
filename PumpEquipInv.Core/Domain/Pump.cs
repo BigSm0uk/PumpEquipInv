@@ -1,23 +1,32 @@
-﻿namespace PumpEquipInv.Core.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using PumpEquipInv.Core.Abstractions;
 
-public class Pump
+namespace PumpEquipInv.Core.Domain;
+
+public class Pump : BaseEntity
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public decimal MaxPressure { get; set; }
-    public decimal LiquidTemperature { get; set; }
-    public decimal Weight { get; set; }
-    public string ImagePath { get; set; }
-    public decimal Price { get; set; }
+    [MaxLength(255)] public required string Name { get; init; }
 
-    public int MotorId { get; set; }
-    public Motor Motor { get; set; }
+    [Column(TypeName = "decimal(10, 2)")] public required decimal MaxPressure { get; init; }
 
-    public int FrameMaterialId { get; set; }
-    public Material FrameMaterial { get; set; }
 
-    public int WheelMaterialId { get; set; }
-    public Material WheelMaterial { get; set; }
+    [Column(TypeName = "decimal(10, 2)")] public required decimal LiquidTemperature { get; init; }
 
-    public string Description { get; set; }
+
+    [Column(TypeName = "decimal(10, 2)")] public required decimal Weight { get; init; }
+    
+    [MaxLength(255)] public required string ImageName { get; init; }
+
+    public required byte[] Image { get; init; }
+
+    [Column(TypeName = "decimal(10, 2)")] public required decimal Price { get; init; }
+    public required Guid MotorId { get; init; }
+    public Motor? Motor { get; init; }
+    public required Guid FrameMaterialId { get; init; }
+    public Material? FrameMaterial { get; init; }
+    public Guid WheelMaterialId { get; init; }
+    public Material? WheelMaterial { get; init; }
+
+    public required string Description { get; init; }
 }
