@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Converters;
+using PumpEquipInv.Core.Interfaces;
 using PumpEquipInv.DataAccess;
+using PumpEquipInv.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,10 @@ builder.Services.AddDbContext<PumpDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresDB"));
 });
+
+builder.Services.AddScoped<IMotorRepository, MotorRepository>();
+builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
+builder.Services.AddScoped<IPumpRepository, PumpRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapControllers();
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -37,4 +44,3 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 app.UseHttpsRedirection();
 
 app.Run();
-
