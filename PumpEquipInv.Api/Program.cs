@@ -34,6 +34,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(x => x.WithOrigins("http://myapp.local", "http://localhost:4200") // путь к нашему SPA клиенту
+    .AllowCredentials()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.MapControllers();
 app.UseForwardedHeaders(new ForwardedHeadersOptions

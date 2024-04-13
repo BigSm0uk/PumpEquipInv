@@ -30,7 +30,7 @@ namespace PumpEquipInv.Api.Controllers
         public async Task<Guid> Post([FromForm] PumpDto item)
         {
             var name = item.file.ContentType;
-            if(!name.Contains(".jpg")) throw new ArgumentException("Неправильное расширение файла");
+            if(!name.Equals("image/jpeg")) throw new ArgumentException("Неправильное расширение файла");
             return await repository.CreateAsync(item);
         }
         [HttpPost("test")]
@@ -47,7 +47,7 @@ namespace PumpEquipInv.Api.Controllers
         public async Task<OperationResult> Put(Guid id, [FromForm] PumpDto item )
         {
             var name = item.file.ContentType;
-            if(!name.Contains(".jpg")) return  OperationResult.FailureResult("Неправильное расширение файла");
+            if(!name.Equals("image/jpeg")) throw new ArgumentException("Неправильное расширение файла");
             return await repository.UpdateByIdAsync(id, item);
         }
 
