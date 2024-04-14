@@ -5,7 +5,7 @@ using PumpEquipInv.Core.Interfaces.Models;
 
 namespace PumpEquipInv.Core.Domain;
 [Table("materials")]
-public sealed class Material : BaseEntity, IMaterial
+public sealed class Material : IBaseEntity, IMaterial
 {
     [StringLength(255)]
     public string name { get; set; } = null!;
@@ -17,4 +17,6 @@ public sealed class Material : BaseEntity, IMaterial
 
     [InverseProperty("wheelmaterial")]
     public ICollection<Pump> pumpwheelmaterials { get; set; } = new List<Pump>();
+
+    public Guid id { get; set; }
 }

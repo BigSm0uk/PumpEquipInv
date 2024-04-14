@@ -3,13 +3,13 @@ using PumpEquipInv.Core.Domain;
 
 namespace PumpEquipInv.DataAccess;
 
-public partial class PumpDbContext(DbContextOptions<PumpDbContext> options) : DbContext(options)
+public class PumpDbContext(DbContextOptions<PumpDbContext> options) : DbContext(options)
 {
-    public virtual required DbSet<Material> Materials { get; init; }
+    public virtual required DbSet<Material> materials { get; init; }
 
-    public virtual required DbSet<Motor> Motors { get; init; }
+    public virtual required DbSet<Motor> motors { get; init; }
 
-    public virtual required DbSet<Pump> Pumps { get; init; }
+    public virtual required DbSet<Pump> pumps { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

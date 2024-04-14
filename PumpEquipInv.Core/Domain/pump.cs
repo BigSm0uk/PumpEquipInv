@@ -6,7 +6,7 @@ using PumpEquipInv.Core.Interfaces.Models;
 
 namespace PumpEquipInv.Core.Domain;
 [Table("pumps")]
-public sealed class Pump : BaseEntity, IPump
+public sealed class Pump : IPumpFullData, IPumpWithDetails
 {
     [StringLength(255)]
     public string name { get; set; } = null!;
@@ -28,13 +28,13 @@ public sealed class Pump : BaseEntity, IPump
     [Precision(10, 2)]
     public decimal price { get; set; }
 
-    public Guid? motorid { get; set; }
+    public Guid motorid { get; set; }
 
-    public Guid? framematerialid { get; set; }
+    public Guid framematerialid { get; set; }
 
-    public Guid? wheelmaterialid { get; set; }
+    public Guid wheelmaterialid { get; set; }
 
-    public string? description { get; set; }
+    public required string description { get; set; }
 
     [ForeignKey("framematerialid")]
     [InverseProperty("pumpframematerials")]
@@ -47,4 +47,6 @@ public sealed class Pump : BaseEntity, IPump
     [ForeignKey("wheelmaterialid")]
     [InverseProperty("pumpwheelmaterials")]
     public Material? wheelmaterial { get; set; }
+
+    public Guid id { get; set; }
 }

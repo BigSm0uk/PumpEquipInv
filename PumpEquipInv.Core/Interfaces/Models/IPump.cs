@@ -1,6 +1,8 @@
-﻿namespace PumpEquipInv.Core.Interfaces.Models;
+﻿using PumpEquipInv.Core.Abstractions;
 
-public interface IPump
+namespace PumpEquipInv.Core.Interfaces.Models;
+
+public interface IPump : IBaseEntity
 {
     public string name { get; set; } 
     
@@ -10,17 +12,13 @@ public interface IPump
     
     public decimal weight { get; set; }
     
-    public string imagename { get; set; } 
-    
-    public byte[]? image { get; set; }
-    
     public decimal price { get; set; }
 
-    public Guid? motorid { get; set; }
+    public Guid motorid { get; set; }
 
-    public Guid? framematerialid { get; set; }
+    public Guid framematerialid { get; set; }
 
-    public Guid? wheelmaterialid { get; set; }
+    public Guid wheelmaterialid { get; set; }
 
-    public string? description { get; set; }
+    public string description { get; set; }
 }

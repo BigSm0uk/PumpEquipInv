@@ -6,7 +6,7 @@ using PumpEquipInv.Core.Interfaces.Models;
 
 namespace PumpEquipInv.Core.Domain;
 [Table("motors")]
-public sealed class Motor : BaseEntity, IMotor
+public sealed class Motor : IBaseEntity, IMotor
 {
     [StringLength(255)]
     public string name { get; set; } = null!;
@@ -26,4 +26,6 @@ public sealed class Motor : BaseEntity, IMotor
 
     [InverseProperty("motor")]
     public ICollection<Pump> pumps { get; init; } = new List<Pump>();
+
+    public Guid id { get; set; }
 }

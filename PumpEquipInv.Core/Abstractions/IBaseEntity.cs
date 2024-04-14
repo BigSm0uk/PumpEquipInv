@@ -2,7 +2,7 @@
 
 namespace PumpEquipInv.Core.Abstractions;
 
-public abstract class BaseEntity
+public interface IBaseEntity
 {
     [Key]
     public Guid id { get; set; }

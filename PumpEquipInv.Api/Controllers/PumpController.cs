@@ -4,6 +4,7 @@ using PumpEquipInv.Core;
 using PumpEquipInv.Core.Domain;
 using PumpEquipInv.Core.Domain.DTOs;
 using PumpEquipInv.Core.Interfaces;
+using PumpEquipInv.Core.Interfaces.Models;
 
 namespace PumpEquipInv.Api.Controllers
 {
@@ -13,16 +14,22 @@ namespace PumpEquipInv.Api.Controllers
     {
         // GET: api/<PumpController>
         [HttpGet]
-        public async Task<IEnumerable<Pump>?> GetAll()
+        public async Task<IEnumerable<IPump>?> GetAll()
         {
             return await repository.GetAllAsync();
         }
 
         // GET api/<PumpController>/6ecd8c99-4036-403d-bf84-cf8400f67837
         [HttpGet("{id:guid}")]
-        public async Task<Pump?> Get(Guid id)
+        public async Task<IPump?> Get(Guid id)
         {
             return await repository.GetByIdAsync(id);
+        }
+        // GET api/<PumpController>/6ecd8c99-4036-403d-bf84-cf8400f67837
+        [HttpGet("/img/{id:guid}")]
+        public async Task<IActionResult> GetImg(Guid id)
+        {
+            return File(await repository.GetImageById(id), "image/jpeg");
         }
 
         // POST api/<PumpController>
