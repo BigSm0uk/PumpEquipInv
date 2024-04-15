@@ -1,6 +1,6 @@
 ﻿namespace PumpEquipInv.Core.Interfaces.Models;
 
-public interface IPumpFullData : IPump
+public interface IPumpFullData : IShortPump
 {
     public string imagename { get; set; } 
     

@@ -17,5 +17,5 @@ public record PumpDto : IPumpFullData
     public required Guid wheelmaterialid { get; set; }
     public required string description { get; set; }
     public required IFormFile file { get; set; }
-    public required Guid id { get; set; }
+
 }

@@ -25,8 +25,8 @@ namespace PumpEquipInv.Api.Controllers
         {
             return await repository.GetByIdAsync(id);
         }
-        // GET api/<PumpController>/6ecd8c99-4036-403d-bf84-cf8400f67837
-        [HttpGet("/img/{id:guid}")]
+        // GET api/<PumpController>/img/6ecd8c99-4036-403d-bf84-cf8400f67837
+        [HttpGet("/api/[controller]/img/{id:guid}")]
         public async Task<IActionResult> GetImg(Guid id)
         {
             return File(await repository.GetImageById(id), "image/jpeg");
@@ -39,14 +39,6 @@ namespace PumpEquipInv.Api.Controllers
             var name = item.file.ContentType;
             if(!name.Equals("image/jpeg")) throw new ArgumentException("Неправильное расширение файла");
             return await repository.CreateAsync(item);
-        }
-        [HttpPost("test")]
-        public async Task<IActionResult> PostTest(IFormFile item)
-        {
-            using var memoryStream = new MemoryStream();
-            await item.CopyToAsync(memoryStream);
-            var res =  memoryStream.ToArray();
-            return File(res, "image/png");
         }
 
         // PUT api/<PumpController>/6ecd8c99-4036-403d-bf84-cf8400f67837
