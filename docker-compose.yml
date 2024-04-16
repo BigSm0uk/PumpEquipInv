@@ -1,5 +1,33 @@
 version: '3'
 services:
+  backend:
+    image: pump-backend
+    ports:
+      - "8000:5000"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__PostgresDB=Server=postgres;Database=PumpEquipDb;Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Port=5432
+    build:
+      context: .
+      dockerfile: PumpEquipInv.Api/Dockerfile
+  web:
+    image: pump-frontend
+    networks:
+      - app-network
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    build:
+      context: ../web-app/
+      dockerfile: ./Dockerfile
+    
   postgres:
     image: postgres:14.3-alpine
     container_name: PumpEquipDb
@@ -16,5 +44,10 @@ services:
       - postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
+    networks:
+      - app-network
 volumes:
   postgres-data:
+networks:
+  app-network:
+    driver: bridge

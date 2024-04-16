@@ -29,12 +29,12 @@ builder.Services.AddScoped<IPumpRepository, PumpRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors(x => x.WithOrigins("http://myapp.local", "http://localhost:4200") // путь к нашему SPA клиенту
+app.UseCors(x => x.WithOrigins("http://myapp.local:443", "http://localhost:4200") // путь к нашему SPA клиенту
     .AllowCredentials()
     .AllowAnyMethod()
     .AllowAnyHeader());

@@ -23,4 +23,10 @@
       <ProjectReference Include="..\PumpEquipInv.DataAccess\PumpEquipInv.DataAccess.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
 </Project>
